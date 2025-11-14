@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Fire Diamond Top-Up</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body { margin:0;font-family:'Inter',sans-serif;background:#f9fafc; }
+    .header { background:#ff6600;color:#fff;padding:12px 18px;font-size:18px;display:flex;align-items:center; }
+    .back-icon { font-size:26px;margin-right:14px;cursor:pointer; }
+    .main-content { padding:18px; }
+    h1 { font-size:20px;margin-bottom:10px;color:#333; }
+    p { font-size:14px;margin-bottom:18px;color:#555; }
+    .items-list { display:grid;grid-template-columns:1fr 1fr;gap:12px; }
+    .item-option { background:#fff;padding:12px;border-radius:10px;border:1px solid #ddd;text-align:center;cursor:pointer;position:relative;transition:.3s; }
+    .item-option h4 { font-size:14px;margin-bottom:6px; }
+    .item-option p { font-size:13px;font-weight:600;color:#ff6600; }
+    .item-option .checkmark { position:absolute;top:8px;right:8px;font-size:16px;color:#28a745;display:none; }
+    .item-option.active { border-color:#ff6600;box-shadow:0 3px 8px rgba(0,0,0,0.12); }
+    .item-option.active .checkmark { display:block; }
+    .selected-info { margin:18px 0;padding:12px;background:#fff;border-radius:10px;border:1px solid #eee;font-size:15px;font-weight:600;text-align:center;display:none; }
+    .payment-numbers { background:#fff;border:1px solid #eee;padding:16px;border-radius:10px;margin:20px 0;box-shadow:0 3px 8px rgba(0,0,0,0.08); }
+    .payment-numbers h3 { margin-bottom:14px;font-size:16px;font-weight:600;text-align:center; }
+    .pay-row { display:flex;align-items:center;justify-content:space-between;background:#fafafa;border:1px solid #ddd;border-radius:8px;padding:8px 12px;margin-bottom:10px; }
+    .pay-left { display:flex;align-items:center;gap:10px; }
+    .pay-left img { width:32px;height:32px;object-fit:contain; }
+    .pay-number { font-size:14px;font-weight:600;color:#333; }
+    .copy-btn { color:#555;cursor:pointer;font-size:16px; }
+    .copy-btn:hover { color:#ff6600; }
+    .order-form { background:#fff;padding:16px;border-radius:10px;border:1px solid #eee;box-shadow:0 3px 8px rgba(0,0,0,0.08); }
+    .order-form h3 { margin-bottom:12px;font-size:16px;text-align:center; }
+    .order-form input { width:100%;padding:10px;margin-bottom:12px;border-radius:8px;border:1px solid #ccc;font-size:14px; }
+    .order-form button { width:100%;padding:12px;background:#ff6600;color:#fff;font-size:15px;border:none;border-radius:8px;cursor:pointer; }
+    .order-form button:hover { background:#e55a00; }
+  </style>
+</head>
+<body>
+
+  <!-- Toolbar -->
+  <div class="header">
+    <i class="fa-solid fa-arrow-left back-icon" onclick="history.back()"></i>
+    Free Fire Diamond
+  </div>
+
+  <div class="main-content">
+    <h1>Free Fire Diamond Top-Up</h1>
+    <p>আপনার পছন্দের ডায়মন্ড প্যাকেজ নির্বাচন করুন এবং অর্ডার সম্পূর্ণ করুন।</p>
+
+    <!-- Items -->
+    <div class="items-list" id="diamond-items">
+      <div class="item-option" data-name="100 Diamonds" data-price="260">
+        <h4>100 Diamonds</h4><p>৳ 260</p><span class="checkmark">✓</span>
+      </div>
+      <div class="item-option" data-name="250 Diamonds" data-price="510">
+        <h4>250 Diamonds</h4><p>৳ 510</p><span class="checkmark">✓</span>
+      </div>
+      <div class="item-option" data-name="530 Diamonds" data-price="780">
+        <h4>530 Diamonds</h4><p>৳ 780</p><span class="checkmark">✓</span>
+      </div>
+      <div class="item-option" data-name="1080 Diamonds" data-price="1300">
+        <h4>1080 Diamonds</h4><p>৳ 1300</p><span class="checkmark">✓</span>
+      </div>
+    </div>
+
+    <!-- Selected Info -->
+    <div class="selected-info" id="selected-info">
+      <p id="selected-text"></p>
+    </div>
+
+    <!-- Payment Numbers -->
+    <div class="payment-numbers">
+      <h3>পেমেন্ট পাঠানোর নাম্বার</h3>
+      <div class="pay-row">
+        <div class="pay-left"><img src="https://i.imgur.com/J3r1QAy.png"><span class="pay-number" id="bkash">01764141686</span></div>
+        <i class="fa fa-copy copy-btn" onclick="copyText('bkash')"></i>
+      </div>
+      <div class="pay-row">
+        <div class="pay-left"><img src="https://i.imgur.com/GRlB5eP.png"><span class="pay-number" id="nagad">01764141686</span></div>
+        <i class="fa fa-copy copy-btn" onclick="copyText('nagad')"></i>
+      </div>
+      <div class="pay-row">
+        <div class="pay-left"><img src="https://i.imgur.com/n8K6ZQy.png"><span class="pay-number" id="rocket">01764141686</span></div>
+        <i class="fa fa-copy copy-btn" onclick="copyText('rocket')"></i>
+      </div>
+    </div>
+
+    <!-- Order Form -->
+    <div class="order-form">
+      <h3>অর্ডার ফর্ম</h3>
+      <input type="text" id="player-id" placeholder="Player ID দিন">
+      <input type="text" id="trx-id" placeholder="Transaction ID দিন">
+      <button onclick="submitOrder()">অর্ডার সাবমিট করুন</button>
+    </div>
+  </div>
+
+  <script>
+    // Item select
+    const items = document.querySelectorAll('.item-option');
+    const selectedBox = document.getElementById('selected-info');
+    const selectedText = document.getElementById('selected-text');
+    let selectedItem = null;
+
+    items.forEach(item=>{
+      item.addEventListener('click', ()=>{
+        items.forEach(i=>i.classList.remove('active'));
+        item.classList.add('active');
+        selectedItem = item.dataset;
+        selectedText.innerText = `✔ আপনি সিলেক্ট করেছেন: ${item.dataset.name} — ৳${item.dataset.price}`;
+        selectedBox.style.display = 'block';
+      });
+    });
+
+    // Copy Number
+    function copyText(id){
+      const text=document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text);
+    }
+
+    // Submit order -> Success page
+    function submitOrder(){
+      const player=document.getElementById('player-id').value.trim();
+      const trx=document.getElementById('trx-id').value.trim();
+      if(!selectedItem || !player || !trx){ return; }
+
+      const order = {
+        name: selectedItem.name,
+        price: selectedItem.price,
+        player: player,
+        trx: trx,
+        date: new Date().toLocaleString()
+      };
+      localStorage.setItem("lastOrder", JSON.stringify(order));
+
+      window.location.href="success.html";
+    }
+  </script>
+</body>
+</html>

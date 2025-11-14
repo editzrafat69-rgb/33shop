@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - MINA BAZAAR</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{
+      font-family:"Poppins",sans-serif;
+      background:linear-gradient(135deg,#001a29,#00394d);
+      height:100vh;display:flex;justify-content:center;align-items:center;
+    }
+    .card{
+      background:#fff;width:340px;padding:25px;border-radius:14px;
+      box-shadow:0 8px 25px rgba(0,0,0,0.4);text-align:center;
+    }
+    .card img{width:80px;margin-bottom:12px;}
+    .card h2{font-size:22px;margin-bottom:18px;color:#ff6600;}
+    .input-group{position:relative;margin-bottom:14px;}
+    .input-group input{
+      width:100%;height:42px;padding:0 40px;border-radius:8px;
+      border:1px solid #ccc;font-size:14px;
+    }
+    .input-group i{position:absolute;top:50%;transform:translateY(-50%);color:#777;}
+    .left-icon{left:12px;}
+    .toggle-password{right:12px;cursor:pointer;}
+    .btn{
+      width:100%;padding:10px;margin-top:12px;border:none;
+      border-radius:8px;background:#ff6600;color:white;
+      font-size:15px;cursor:pointer;
+    }
+    .btn:hover{background:#e65c00;}
+    .alt-link{margin-top:12px;font-size:13px;}
+    .alt-link a{color:#ff6600;text-decoration:none;}
+    .toast{
+      position:fixed;bottom:15px;left:50%;transform:translateX(-50%);
+      color:#fff;padding:12px 20px;border-radius:6px;font-size:14px;
+      display:flex;align-items:center;gap:8px;
+      opacity:0;visibility:hidden;transition:0.4s;
+    }
+    .toast.show{opacity:1;visibility:visible;}
+    .toast.success{background:#1e4620;}
+    .toast.error{background:#641e1e;}
+    .toast i{font-size:16px;}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img src="https://i.imgur.com/FzbvKCx.png" alt="Logo">
+    <h2>Login</h2>
+    <div class="input-group">
+      <i class="fas fa-envelope left-icon"></i>
+      <input type="email" id="login-email" placeholder="Enter Gmail Address">
+    </div>
+    <div class="input-group">
+      <i class="fas fa-lock left-icon"></i>
+      <input type="password" id="login-password" placeholder="Enter Password">
+      <i class="fas fa-eye toggle-password" onclick="togglePassword('login-password', this)"></i>
+    </div>
+    <button class="btn" onclick="validateLogin()">Login</button>
+    <div class="alt-link">Don't have an account? <a href="register.html">Register</a></div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script>
+    // যদি আগে থেকেই লগইন করা থাকে → index.html এ পাঠানো হবে
+    if(localStorage.getItem("isLoggedIn") === "true"){
+      window.location.href = "index.html";
+    }
+
+    function togglePassword(id, el){
+      const pass=document.getElementById(id);
+      if(pass.type==="password"){
+        pass.type="text";
+        el.classList.replace("fa-eye","fa-eye-slash");
+      } else {
+        pass.type="password";
+        el.classList.replace("fa-eye-slash","fa-eye");
+      }
+    }
+
+    function showToast(msg,type="success"){
+      const toast=document.getElementById("toast");
+      toast.innerHTML=(type==="success")? 
+        `<i class="fas fa-check-circle"></i> ${msg}` : 
+        `<i class="fas fa-times-circle"></i> ${msg}`;
+      toast.className=`toast show ${type}`;
+      setTimeout(()=>toast.classList.remove("show"),2500);
+    }
+
+    function getRegisteredUsers(){
+      return JSON.parse(localStorage.getItem("users")) || [];
+    }
+
+    function validateLogin(){
+      let email=document.getElementById("login-email").value.trim();
+      let pass=document.getElementById("login-password").value.trim();
+      let users=getRegisteredUsers();
+      let exists=users.find(u=>u.email===email && u.password===pass);
+
+      if(exists){
+        // ✅ লগইন সফল → ইউজার সেট করো
+        localStorage.setItem("isLoggedIn","true");
+        localStorage.setItem("loggedInUser", email); // গুরুত্বপূর্ণ
+
+        showToast("✅ Login Successful!","success");
+        setTimeout(()=>window.location.href="index.html",1500);
+      } else {
+        showToast("❌ Wrong Email or Password!","error");
+      }
+    }
+  </script>
+</body>
+</html>

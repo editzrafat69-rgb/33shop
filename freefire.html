@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Fire Diamond Top-Up</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body { margin: 0; font-family: 'Inter', sans-serif; background: #f9fafc; }
+    .header { background: #ff6600; color: #fff; padding: 12px 18px; font-size: 18px; display: flex; align-items: center; }
+    .back-icon { font-size: 26px; margin-right: 14px; cursor: pointer; }
+    .main-content { padding: 18px; }
+    h1 { font-size: 20px; margin-bottom: 10px; color: #333; }
+    p { font-size: 14px; margin-bottom: 18px; color: #555; }
+
+    .items-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .item-option { background: #fff; padding: 12px; border-radius: 10px; border: 1px solid #ddd; text-align: center; cursor: pointer; position: relative; transition: 0.3s; }
+    .item-option h4 { font-size: 14px; margin-bottom: 6px; }
+    .item-option p { font-size: 13px; font-weight: 600; color: #ff6600; }
+    .item-option .checkmark { position: absolute; top: 8px; right: 8px; width: 22px; height: 22px; border-radius: 50%; background: #fff; border: 2px solid #dc3545; color: #dc3545; font-size: 14px; font-weight: bold; display: none; align-items: center; justify-content: center; }
+    .item-option.active { border-color: #ff6600; box-shadow: 0 3px 8px rgba(0,0,0,0.12); }
+    .item-option.active .checkmark { display: flex; }
+
+    .selected-info { margin: 18px 0; padding: 12px; background: #fff; border-radius: 10px; border: 1px solid #eee; font-size: 15px; font-weight: 600; text-align: center; display: none; }
+
+    .payment-numbers { background: #fff; border: 1px solid #eee; padding: 16px; border-radius: 10px; margin: 20px 0; box-shadow: 0 3px 8px rgba(0,0,0,0.08); }
+    .payment-numbers h3 { margin-bottom: 14px; font-size: 16px; font-weight: 600; text-align: center; }
+    .pay-row { display: flex; align-items: center; justify-content: space-between; background: #fafafa; border: 1px solid #ddd; border-radius: 8px; padding: 8px 12px; margin-bottom: 10px; cursor: pointer; transition: 0.3s; position: relative; }
+    .pay-row .tick { position: absolute; right: 12px; font-size: 20px; color: #dc3545; display: none; font-weight: bold; }
+    .pay-row.active { border-color: #dc3545; background: #ffe9eb; box-shadow: 0 3px 8px rgba(0,0,0,0.12); }
+    .pay-row.active .tick { display: block; }
+    .pay-left { display: flex; align-items: center; gap: 10px; }
+    .pay-left img { width: 32px; height: 32px; object-fit: contain; }
+    .pay-number { font-size: 14px; font-weight: 600; color: #333; }
+
+    .order-form { background: #fff; padding: 16px; border-radius: 10px; border: 1px solid #eee; box-shadow: 0 3px 8px rgba(0,0,0,0.08); }
+    .order-form h3 { margin-bottom: 12px; font-size: 16px; text-align: center; }
+    .order-form input { width: 100%; padding: 10px; margin-bottom: 12px; border-radius: 8px; border: 1px solid #ccc; font-size: 14px; }
+    .order-form button { width: 100%; padding: 12px; background: #ff6600; color: #fff; font-size: 15px; border: none; border-radius: 8px; cursor: pointer; }
+    .order-form button:hover { background: #e55a00; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <i class="fa-solid fa-arrow-left back-icon" onclick="history.back()"></i>
+    Free Fire Diamond
+  </div>
+
+  <div class="main-content">
+    <h1>Free Fire Diamond Top-Up</h1>
+    <p>আপনার পছন্দের ডায়মন্ড প্যাকেজ নির্বাচন করুন এবং অর্ডার সম্পূর্ণ করুন।</p>
+
+    <!-- Items -->
+    <div class="items-list" id="diamond-items">
+      <div class="item-option" data-name="25 Diamonds" data-price="26"><h4>25 Diamonds</h4><p>৳ 26</p><span class="checkmark">✓</span></div>
+      <div class="item-option" data-name="50 Diamonds" data-price="41"><h4>50 Diamonds</h4><p>৳ 41</p><span class="checkmark">✓</span></div>
+      <div class="item-option" data-name="115 Diamonds" data-price="82"><h4>115 Diamonds</h4><p>৳ 82</p><span class="checkmark">✓</span></div>
+      <div class="item-option" data-name="240 Diamonds" data-price="164"><h4>240 Diamonds</h4><p>৳ 164</p><span class="checkmark">✓</span></div>
+      <div class="item-option" data-name="355 Diamonds" data-price="245"><h4>355 Diamonds</h4><p>৳ 245</p><span class="checkmark">✓</span></div>
+      <div class="item-option" data-name="480 Diamonds" data-price="327"><h4>480 Diamonds</h4><p>৳ 327</p><span class="checkmark">✓</span></div>
+      <div class="item-option" data-name="505 Diamonds" data-price="347"><h4>505 Diamonds</h4><p>৳ 347</p><span class="checkmark">✓</span></div>
+      <div class="item-option" data-name="610 Diamonds" data-price="413"><h4>610 Diamonds</h4><p>৳ 413</p><span class="checkmark">✓</span></div>
+      <div class="item-option" data-name="725 Diamonds" data-price="495"><h4>725 Diamonds</h4><p>৳ 495</p><span class="checkmark">✓</span></div>
+      <div class="item-option" data-name="1240 Diamonds" data-price="826"><h4>1240 Diamonds</h4><p>৳ 826</p><span class="checkmark">✓</span></div>
+      <div class="item-option" data-name="2530 Diamonds" data-price="1651"><h4>2530 Diamonds</h4><p>৳ 1651</p><span class="checkmark">✓</span></div>
+      <div class="item-option" data-name="5060 Diamonds" data-price="3302"><h4>5060 Diamonds</h4><p>৳ 3302</p><span class="checkmark">✓</span></div>
+      <div class="item-option" data-name="7590 Diamonds" data-price="4958"><h4>7590 Diamonds</h4><p>৳ 4958</p><span class="checkmark">✓</span></div>
+      <div class="item-option" data-name="10120 Diamonds" data-price="6614"><h4>10120 Diamonds</h4><p>৳ 6614</p><span class="checkmark">✓</span></div>
+      <div class="item-option" data-name="12650 Diamonds" data-price="8254"><h4>12650 Diamonds</h4><p>৳ 8254</p><span class="checkmark">✓</span></div>
+    </div>
+
+    <!-- Selected Info -->
+    <div class="selected-info" id="selected-info">
+      <p id="selected-text"></p>
+    </div>
+
+    <!-- Payment Numbers -->
+    <div class="payment-numbers">
+      <h3>পেমেন্ট পাঠানোর নাম্বার</h3>
+      <div class="pay-row" data-id="bkash">
+        <div class="pay-left">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNAF2pkpD3Li5ZUlJ5LsTWOGjmCCj89wxUO4DkM25Zww&s" alt="bKash">
+          <span class="pay-number">01764141686</span>
+        </div>
+        <span class="tick">✓</span>
+      </div>
+      <div class="pay-row" data-id="nagad">
+        <div class="pay-left">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZ1kq9_6GpY3anEMuEoGRstF5dbWZp86KNNf9XaYu4Sw&s=10" alt="Nagad">
+          <span class="pay-number">01764141686</span>
+        </div>
+        <span class="tick">✓</span>
+      </div>
+      <div class="pay-row" data-id="rocket">
+        <div class="pay-left">
+          <img src="https://images.sftcdn.net/images/t_app-icon-m/p/00cb67a4-fd0d-4ad4-84d6-0a73306ad95d/3263349106/rocket-logo" alt="Rocket">
+          <span class="pay-number">01764141686</span>
+        </div>
+        <span class="tick">✓</span>
+      </div>
+    </div>
+
+    <!-- Order Form -->
+    <div class="order-form">
+      <h3>অর্ডার ফর্ম</h3>
+      <input type="text" id="player-id" placeholder="Player ID দিন">
+      <input type="text" id="trx-id" placeholder="Transaction ID দিন">
+      <button onclick="submitOrder()">অর্ডার সাবমিট করুন</button>
+    </div>
+  </div>
+
+  <script>
+    // Item select
+    const items = document.querySelectorAll('.item-option');
+    const selectedBox = document.getElementById('selected-info');
+    const selectedText = document.getElementById('selected-text');
+    items.forEach(item=>{
+      item.addEventListener('click', ()=>{
+        items.forEach(i=>i.classList.remove('active'));
+        item.classList.add('active');
+        selectedText.innerText = `✔ আপনি সিলেক্ট করেছেন: ${item.dataset.name} — ৳${item.dataset.price}`;
+        selectedBox.style.display = 'block';
+      });
+    });
+
+    // Wallet select
+    let selectedWallet = null;
+    const payRows = document.querySelectorAll('.pay-row');
+    payRows.forEach(row=>{
+      row.addEventListener('click', ()=>{
+        payRows.forEach(r=>r.classList.remove('active'));
+        row.classList.add('active');
+        selectedWallet = row;
+        const number = row.querySelector('.pay-number').innerText;
+        navigator.clipboard.writeText(number).then(()=>{
+          alert("✅ কপি হয়েছে: " + number);
+        });
+      });
+    });
+
+    // Submit order
+    function submitOrder(){
+      const selected = document.querySelector('.item-option.active');
+      const player = document.getElementById('player-id').value.trim();
+      const trx = document.getElementById('trx-id').value.trim();
+
+      if(!selected){ alert("❌ প্রথমে একটি ডায়মন্ড প্যাকেজ সিলেক্ট করুন"); return; }
+      if(!selectedWallet){ alert("❌ Wallet সিলেক্ট করুন"); return; }
+      if(!player || !trx){ alert("❌ Player ID এবং Transaction ID দিতে হবে"); return; }
+
+      // লগইন ইউজার চেক
+      const loggedInUser = localStorage.getItem("loggedInUser");
+      if(!loggedInUser){
+        alert("❌ প্রথমে লগইন করুন");
+        window.location.href = "login.html";
+        return;
+      }
+
+      // অর্ডার ডাটা
+      const order = {
+        package: selected.dataset.name,
+        price: selected.dataset.price,
+        wallet: selectedWallet.dataset.id,
+        walletNumber: selectedWallet.querySelector('.pay-number').innerText,
+        playerId: player,
+        trxId: trx,
+        date: new Date().toLocaleString()
+      };
+
+      // ইউজার-ভিত্তিক key
+      const userKey = "orders_" + loggedInUser;
+      let orders = JSON.parse(localStorage.getItem(userKey)) || [];
+      orders.push(order);
+      localStorage.setItem(userKey, JSON.stringify(orders));
+
+      // success.html এ পাঠানো
+      window.location.href = "success.html";
+    }
+  </script>
+</body>
+</html>
