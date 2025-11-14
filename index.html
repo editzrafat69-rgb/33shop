@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MINA BAZAAR</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root{
+      --bg:#001722;
+      --card:#0d2a3a;
+      --accent:#ff6600;
+      --muted:#1c4f6d;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:Arial, sans-serif; background:var(--bg); color:#fff;
+    }
+    .toolbar{
+      display:flex; justify-content:space-between; align-items:center;
+      padding:12px 15px; background:var(--accent); color:#fff; position:fixed; top:0; left:0; right:0; z-index:1000;
+    }
+    .toolbar .title{font-size:20px; font-weight:700; letter-spacing:1px}
+    .toolbar i{font-size:22px; cursor:pointer}
+
+    .drawer{width:250px; height:100%; background:var(--card); position:fixed; top:0; left:-250px; transition:0.3s; z-index:1500; display:flex; flex-direction:column}
+    .drawer a{display:flex; align-items:center; padding:14px 20px; color:white; text-decoration:none; font-size:15px; border-bottom:1px solid var(--muted)}
+    .drawer a i{margin-right:12px; font-size:18px; color:#ffcc66}
+    .drawer a:hover{background:var(--muted)}
+    .drawer.open{left:0}
+
+    .content{padding:90px 12px 40px}
+    .notice{background:#d4edda; color:#000; padding:10px; font-size:14px; border-radius:6px}
+
+    .top-slider{margin-top:12px; position:relative; overflow:hidden; border-radius:10px}
+    .slides{display:flex; transition:transform 0.6s ease}
+    .slide{min-width:100%; user-select:none}
+    .slide img{display:block; width:100%; height:220px; object-fit:cover}
+    .slider-controls{position:absolute; inset:0; display:flex; justify-content:space-between; align-items:center; pointer-events:none}
+    .btn{pointer-events:auto; background:rgba(0,0,0,0.35); border-radius:50%; width:36px; height:36px; display:flex; align-items:center; justify-content:center; color:#fff; margin:8px}
+
+    .decor-line{height:8px; margin:10px 0; border-radius:999px; background:linear-gradient(90deg,#ff6600,#ffcc66,#00c6ff); box-shadow:0 6px 20px rgba(0,198,255,0.08);}
+
+    .hot-title{text-align:center; margin:14px 0 8px; font-size:22px; font-weight:700; color:orange}
+
+    .grid{display:grid; grid-template-columns:repeat(2,1fr); gap:15px; margin-top:6px}
+    .card{background:var(--card); border-radius:8px; overflow:hidden; text-align:center; padding-bottom:10px; position:relative; cursor:pointer}
+    .card img{width:100%; height:120px; object-fit:cover}
+    .card h4{margin:10px 0 6px; font-size:14px}
+
+    .whatsapp-link{animation:whatsappPulse 1.5s infinite}
+    @keyframes whatsappPulse{0%{transform:scale(1)}50%{transform:scale(1.08)}100%{transform:scale(1)}}
+
+    @media(min-width:700px){
+      .grid{grid-template-columns:repeat(4,1fr)}
+      .slide img{height:320px}
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <i class="fas fa-bars" onclick="toggleDrawer()"></i>
+    <div class="title">MINA BAZAAR</div>
+    <i class="fas fa-bell"></i>
+  </div>
+
+  <div id="drawer" class="drawer">
+    <a href="#" onclick="goHome()"><i class="fas fa-home"></i>Home</a>
+    <a href="my-orders.html"><i class="fas fa-box"></i>Order History</a>
+    <a href="https://wa.me/8801764141686" target="_blank" class="whatsapp-link"><i class="fab fa-whatsapp"></i>Contact WhatsApp</a>
+    <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i>Logout</a>
+  </div>
+
+  <div class="content">
+    <div class="notice">১৮ বছরের নিচে কেউ অর্ডার করতে পারবে না, বাবা-মায়ের অনুমতি লাগবে!</div>
+
+    <div class="top-slider" id="topSlider">
+      <div class="slides" id="slides">
+        <div class="slide"><img src="https://i.imgur.com/QJwCVH0.jpeg" alt="slider"></div>
+      </div>
+      <div class="slider-controls">
+        <div><button class="btn" id="prev"><i class="fas fa-chevron-left"></i></button></div>
+        <div><button class="btn" id="next"><i class="fas fa-chevron-right"></i></button></div>
+      </div>
+    </div>
+
+    <div class="decor-line"></div>
+    <div class="hot-title">HOT ITEM</div>
+
+    <div class="grid">
+      <div class="card">
+        <img src="https://i.imgur.com/flUBT5a.png" alt="plate1">
+        <h4>TIKTOK COIN SHOP</h4>
+      </div>
+      <div class="card" onclick="window.location.href='freefire.html'">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwWJl3NcHdRw9QdJeH-unWAJ2SQNJaHWnU3v5IGYIGGQ&s=10" alt="plate2">
+        <h4>FREE FIRE TOP-UP</h4>
+      </div>
+      <div class="card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdhM39PL-tuRD_720ujo4EFxGG0Edz2OsK8HWdy3a15g&s=10" alt="plate3">
+        <h4>LEVEL UP PASS</h4>
+      </div>
+      <div class="card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2LrZ9ERhHFeamtFk5UcSVBO9C02_rQo1E-EALScSjvg&s=10" alt="plate4">
+        <h4>FREE FIRE MEMBERSHIP</h4>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // যদি লগইন না করা থাকে তাহলে login.html এ পাঠাবে
+    if(localStorage.getItem("isLoggedIn") !== "true"){
+      window.location.href = "login.html";
+    }
+
+    function toggleDrawer(){document.getElementById('drawer').classList.toggle('open')}
+    function goHome(){document.getElementById('drawer').classList.remove('open')}
+    function logout(){
+      localStorage.removeItem("isLoggedIn");
+      window.location.href = "login.html";
+    }
+
+    (function(){
+      const slidesEl = document.getElementById('slides')
+      const slides = Array.from(slidesEl.children)
+      let index = 0
+      const total = slides.length
+      const update = ()=>{ slidesEl.style.transform = `translateX(${-index*100}%)` }
+      document.getElementById('prev').addEventListener('click',()=>{ index = (index-1+total)%total; update() })
+      document.getElementById('next').addEventListener('click',()=>{ index = (index+1)%total; update() })
+      if(total>1){ setInterval(()=>{ index = (index+1)%total; update() },4000) }
+    })()
+  </script>
+</body>
+</html>
